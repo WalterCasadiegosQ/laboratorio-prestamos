@@ -9,6 +9,7 @@ import com.ufps.laboratorioprestamos.domain.model.Prestamo;
 import com.ufps.laboratorioprestamos.domain.repository.PrestamoRepository;
 import com.ufps.laboratorioprestamos.infrastructure.converter.PrestamoConverter;
 import com.ufps.laboratorioprestamos.infrastructure.entity.PrestamoEntity;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -50,9 +51,35 @@ public class PrestamoRepositoryImpl implements PrestamoRepository {
 }
 
 interface PrestamoJpaRepository extends JpaRepository<PrestamoEntity, Long> {
+    @Override
+    @EntityGraph(attributePaths = {
+            "persona",
+            "equipo",
+            "equipo.categoria"
+    })
+    List<PrestamoEntity> findAll();
+
+    @Override
+    @EntityGraph(attributePaths = {
+            "persona",
+            "equipo",
+            "equipo.categoria"
+    })
+    Optional<PrestamoEntity> findById(Long id);
+
     @Query("select p from PrestamoEntity p where p.persona.id = :personaId and p.estado = :estado")
+    @EntityGraph(attributePaths = {
+            "persona",
+            "equipo",
+            "equipo.categoria"
+    })
     List<PrestamoEntity> findActiveByPersonId(Long personaId, EstadoPrestamo estado);
 
     @Query("select p from PrestamoEntity p where p.estado = :estado and p.fechaVencimiento < :hoy")
+    @EntityGraph(attributePaths = {
+            "persona",
+            "equipo",
+            "equipo.categoria"
+    })
     List<PrestamoEntity> findActiveOverdue(LocalDate hoy, EstadoPrestamo estado);
 }
