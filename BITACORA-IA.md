@@ -45,3 +45,23 @@
 - Compilación del proyecto.
 - Ejecución de las pruebas automatizadas.
 - Verificación de la integración entre los casos de uso y la persistencia.
+
+## Siguiente avance
+
+- Fecha prevista: 2026-09-20
+- Objetivo: completar la exposición REST del sistema, incorporar las pruebas finales y consolidar la documentación técnica del proyecto.
+
+### Trabajo previsto
+
+- Incorporar los controladores REST y los DTO de entrada y salida.
+- Completar la conversión entre los modelos internos y las respuestas REST.
+- Incorporar las pruebas correspondientes a los principales flujos y reglas de negocio.
+- Completar `README.md` con la descripción, configuración, arquitectura y endpoints del sistema.
+- Incorporar `ADR-003` para documentar las decisiones técnicas relacionadas con la separación entre modelos de dominio, entidades JPA y DTO REST.
+
+### Verificación prevista
+
+- Ejecución completa de las pruebas automatizadas.
+- Verificación de los principales endpoints mediante la API REST.
+- Validación del flujo completo de préstamo y devolución.
+- Verificación final de compilación y ejecución del proyecto.

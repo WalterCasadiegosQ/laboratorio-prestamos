@@ -1,6 +1,7 @@
 package com.ufps.laboratorioprestamos.usecases.services;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.ufps.laboratorioprestamos.domain.exception.OperacionInvalidaException;
 import com.ufps.laboratorioprestamos.domain.exception.PrestamoYaDevueltoException;
@@ -58,6 +59,11 @@ public class DevolucionServiceImpl implements DevolucionService {
         }
         equipoRepository.save(equipo);
         return devolucionRepository.save(devolucion);
+    }
+
+    @Override
+    public List<Devolucion> findAll() {
+        return devolucionRepository.findAll();
     }
 
     @Override
